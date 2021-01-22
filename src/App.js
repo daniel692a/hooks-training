@@ -9,6 +9,7 @@ import Greet from './components/Greet';
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ToggleTheme from './components/ToggleTheme';
+import StateHook from './pages/StateHook';
 //import { ReactComponent as Desktop} from './assets/escritorio.svg';
 //Para traer un componente que no está exportado de forma default, lo ponemos entre llaves
 function App() {
@@ -35,7 +36,7 @@ function App() {
     toast.dark(`Hello ${name}`);
   }
 //<ToggleTheme theme={theme} toggleTheme={toggleTheme}>Toggle theme</ToggleTheme>
-  return (
+  /*return (
     <ThemeProvider theme ={theme === 'light' ? lightTheme : darkTheme} >
       <GlobalStyles />
       <div className="App">
@@ -49,7 +50,15 @@ function App() {
         </header>
       </div>
     </ThemeProvider>
-  );
+  );*/
+  return (
+    <ThemeProvider theme ={theme === 'light' ? lightTheme : darkTheme} >
+      <GlobalStyles />
+      <div className="App">
+        <StateHook/>
+      </div>
+    </ThemeProvider>
+  )
 }
 
 export default App;
