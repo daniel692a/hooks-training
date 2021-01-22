@@ -1,8 +1,8 @@
 import styled from 'styled-components';
+//import { lightTheme, darkTheme} from './theme';
 
 const ButtonGreet = styled.button`
     border-radius: 10px;
-    color: #fff;
     width: 10vw;
     height: 8vh;
     border: none;
@@ -12,7 +12,8 @@ const ButtonGreet = styled.button`
 `;
 
 const Greet = ({userInfo, greetUser}) => {
-    const {name, color, age} = userInfo;
+    //Props by default
+    const {name = 'user', color = '#4DFFF3', age = '0'} = userInfo;
     return (
         <div>
             <h3 style={{color: `${color}`}}>Hello {name}, you are {age} years old</h3>
