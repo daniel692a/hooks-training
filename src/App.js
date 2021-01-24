@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import './App.css';
-//import HelloWorld, {Bye} from './components/HelloWorld';
 import Welcome from './components/Welcome';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme} from './theme';
@@ -10,13 +8,12 @@ import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ToggleTheme from './components/ToggleTheme';
 import StateHook from './pages/StateHook';
-//import { ReactComponent as Desktop} from './assets/escritorio.svg';
-//Para traer un componente que no está exportado de forma default, lo ponemos entre llaves
+import EffectHook from './pages/EffectHook';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+
 function App() {
   const [theme, setTheme] = useState('light');
   const toggleTheme = () => (theme === 'light') ? setTheme('dark') : setTheme('light');
-  //const userName = 'Daniel Armas';
-  //const age = 19;
   const user = {
     name : 'Daniel Armas',
     age : 18,
@@ -54,9 +51,21 @@ function App() {
   return (
     <ThemeProvider theme ={theme === 'light' ? lightTheme : darkTheme} >
       <GlobalStyles />
-      <div className="App">
-        <StateHook/>
-      </div>
+        <ToggleTheme theme={theme} toggleTheme={toggleTheme} />
+        <Router>
+          <Switch>
+            <Route exact path='/home'>
+              <Welcome />
+            </Route>
+            <Route exact path='/use-effect'>
+              <EffectHook />
+            </Route>
+            <Route exact path='/use-state'>
+              <StateHook />
+            </Route>
+          </Switch>
+          <Redirect to='/home' />
+        </Router>
     </ThemeProvider>
   )
 }
